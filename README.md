@@ -6,6 +6,11 @@ It's written in Flutter, using the [OpenWeatherMaps API](https://openweathermap.
 
 It's available here as a fully open-source app. No API keys will be provided.
 
+<span>
+<img src="https://github.com/chris84948/open-sky/blob/master/screenshots/Screenshot1.png?raw=true" alt="alt text" width="250">
+<img src="https://github.com/chris84948/open-sky/blob/master/screenshots/Screenshot2.png?raw=true" alt="alt text" width="250">
+<img src="https://github.com/chris84948/open-sky/blob/master/screenshots/Screenshot4.png?raw=true" alt="alt text" width="250">
+</span>
 
 ## Android App On Play Store
 
