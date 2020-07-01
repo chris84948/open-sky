@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:OpenSky/Ext.dart';
 
 class FeelsLike {
   double day;
@@ -9,10 +10,10 @@ class FeelsLike {
   FeelsLike({this.day, this.night, this.eve, this.morn});
 
   FeelsLike.fromJson(Map<String, dynamic> json) {
-    day = json['day'].toDouble();
-    night = json['night'].toDouble();
-    eve = json['eve'].toDouble();
-    morn = json['morn'].toDouble();
+    day = json.getDoubleSafe('day');
+    night = json.getDoubleSafe('night');
+    eve = json.getDoubleSafe('eve');
+    morn = json.getDoubleSafe('morn');
   }
 
   double getMin() {

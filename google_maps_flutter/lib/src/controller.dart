@@ -262,4 +262,8 @@ class GoogleMapController {
   Future<void> setTileAnimation(bool active) {
     return _googleMapsFlutterPlatform.setTileAnimation(active, mapId: mapId);
   }
+
+  Future<void> refreshTiles() {
+    return _googleMapsFlutterPlatform.refreshTiles(mapId: mapId);
+  }
 }

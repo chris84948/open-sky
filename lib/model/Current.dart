@@ -1,4 +1,5 @@
 import 'package:OpenSky/model/Weather.dart';
+import 'package:OpenSky/Ext.dart';
 
 class Current {
   DateTime dt;
@@ -40,15 +41,15 @@ class Current {
         (json['sunrise'] as int) * 1000);
     sunset =
         new DateTime.fromMillisecondsSinceEpoch((json['sunset'] as int) * 1000);
-    temp = json['temp'].toDouble();
-    feelsLike = json['feels_like'].toDouble();
+    temp = json.getDoubleSafe('temp');
+    feelsLike = json.getDoubleSafe('feels_like');
     pressure = json['pressure'];
     humidity = json['humidity'];
-    dewPoint = json['dew_point'].toDouble();
-    uvi = json['uvi'].toDouble();
+    dewPoint = json.getDoubleSafe('dew_point');
+    uvi = json.getDoubleSafe('uvi');
     clouds = json['clouds'];
     visibility = json['visibility'];
-    windSpeed = json['wind_speed'].toDouble();
+    windSpeed = json.getDoubleSafe('wind_speed');
     windDeg = json['wind_deg'];
     if (json['weather'] != null) {
       weather = new List<Weather>();

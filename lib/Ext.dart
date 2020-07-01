@@ -5,3 +5,9 @@ extension StringExt on String {
     }).join(' ');
   }
 }
+
+extension JsonExt on Map<String, dynamic> {
+  double getDoubleSafe(String fieldName) {
+    return this[fieldName] != null ? this[fieldName].toDouble() : 0.0;
+  }
+}

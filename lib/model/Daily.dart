@@ -1,6 +1,7 @@
 import 'package:OpenSky/model/FeelsLike.dart';
 import 'package:OpenSky/model/Temp.dart';
 import 'package:OpenSky/model/Weather.dart';
+import 'package:OpenSky/Ext.dart';
 
 class Daily {
   DateTime dt;
@@ -46,8 +47,8 @@ class Daily {
         : null;
     pressure = json['pressure'];
     humidity = json['humidity'];
-    dewPoint = json['dew_point'].toDouble();
-    windSpeed = json['wind_speed'].toDouble();
+    dewPoint = json.getDoubleSafe('dew_point');
+    windSpeed = json.getDoubleSafe('wind_speed');
     windDeg = json['wind_deg'];
     if (json['weather'] != null) {
       weather = new List<Weather>();
@@ -56,8 +57,8 @@ class Daily {
       });
     }
     clouds = json['clouds'];
-    rain = json['rain'] != null ? json['rain'].toDouble() / 25.4 : 0.0;
-    uvi = json['uvi'].toDouble();
+    rain = json.getDoubleSafe('rain') / 25.4;
+    uvi = json.getDoubleSafe('uvi');
   }
 
   Map<String, dynamic> toJson() {

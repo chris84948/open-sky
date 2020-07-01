@@ -75,10 +75,10 @@ class _HomeViewState extends State<HomeView> with WidgetsBindingObserver {
             IconButton(
               icon: Icon(Icons.settings),
               onPressed: () async {
+                if (_settings == null) {
+                  _settings = await _loadSettingsFromJson();
+                }
                 await _showSettingsDialog(context);
-                setState(() {
-                  _forecast = null;
-                });
                 var data = await _queryForecastData();
                 if (data != null) {
                   setState(() {
@@ -195,11 +195,18 @@ class _HomeViewState extends State<HomeView> with WidgetsBindingObserver {
       return;
     }
 
+    _settings = await _loadSettingsFromJson();
+    if (_settings == null) {
+      _settings = await _showSettingsDialog(context);
+    }
+  }
+
+  Future<Settings> _loadSettingsFromJson() async {
     String settingsJson = await _loadSetting('settings');
     if (settingsJson != null) {
-      _settings = Settings.fromJson(jsonDecode(settingsJson));
+      return Settings.fromJson(jsonDecode(settingsJson));
     } else {
-      _settings = await _showSettingsDialog(context);
+      return null;
     }
   }
 
@@ -218,21 +225,28 @@ class _HomeViewState extends State<HomeView> with WidgetsBindingObserver {
   }
 
   Future<Forecast> _queryForecastData() async {
-    await _loadSettingsIfNeeded();
-    _latLongCoords = await _getLatLongCoords(_settings.useLocation);
+    try {
+      await _loadSettingsIfNeeded();
+      _latLongCoords = await _getLatLongCoords(_settings.useLocation);
 
-    var response = await http.get(
-        'https://api.openweathermap.org/data/2.5/onecall?lat=${_latLongCoords.latitude}&lon=${_latLongCoords.longitude}&units=imperial&appid=${_settings.apiKey}');
+      var response = await http.get(
+          'https://api.openweathermap.org/data/2.5/onecall?lat=${_latLongCoords.latitude}&lon=${_latLongCoords.longitude}&units=imperial&appid=${_settings.apiKey}');
 
-    if (response.statusCode >= 400) {
-      _showErrorDialog('API Key Error!', jsonDecode(response.body)['message']);
-      return null;
+      if (response.statusCode >= 400) {
+        _showErrorDialog(
+            'API Key Error!', jsonDecode(response.body)['message']);
+        return null;
+      }
+
+      // save forecast to local mem
+      _saveSetting('forecast', response.body);
+      Map forecastMap = jsonDecode(response.body);
+      return Forecast.fromJson(forecastMap);
+    } catch (ex) {
+      _showErrorDialog('Query Forecast Error!', ex.toString());
     }
 
-    // save forecast to local mem
-    _saveSetting('forecast', response.body);
-    Map forecastMap = jsonDecode(response.body);
-    return Forecast.fromJson(forecastMap);
+    return null;
   }
 
   Future<LatLng> _getLatLongCoords(bool _useLocationServices) async {

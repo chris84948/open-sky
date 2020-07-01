@@ -1,3 +1,5 @@
+import 'package:OpenSky/Ext.dart';
+
 class Minutely {
   DateTime dt;
   double precipitation;
@@ -7,8 +9,8 @@ class Minutely {
 
   Minutely.fromJson(Map<String, dynamic> json) {
     dt = new DateTime.fromMillisecondsSinceEpoch((json['dt'] as int) * 1000);
-    precipitation = json['precipitation'].toDouble() / 25.4;
-    intensity = _calculateIntensity(json['precipitation'].toDouble());
+    precipitation = json.getDoubleSafe('precipitation') / 25.4;
+    intensity = _calculateIntensity(json.getDoubleSafe('precipitation'));
   }
 
   int _calculateIntensity(double precipMM) {

@@ -1,4 +1,5 @@
 import 'package:OpenSky/model/Weather.dart';
+import 'package:OpenSky/Ext.dart';
 
 class Hourly {
   DateTime dt;
@@ -28,14 +29,14 @@ class Hourly {
 
   Hourly.fromJson(Map<String, dynamic> json) {
     dt = new DateTime.fromMillisecondsSinceEpoch((json['dt'] as int) * 1000);
-    temp = json['temp'].toDouble();
-    feelsLike = json['feels_like'].toDouble();
-    pressure = json['pressure'].toDouble();
-    humidity = json['humidity'].toDouble();
-    dewPoint = json['dew_point'].toDouble();
-    clouds = json['clouds'].toDouble();
-    windSpeed = json['wind_speed'].toDouble();
-    windDeg = json['wind_deg'].toDouble();
+    temp = json.getDoubleSafe('temp');
+    feelsLike = json.getDoubleSafe('feels_like');
+    pressure = json.getDoubleSafe('pressure');
+    humidity = json.getDoubleSafe('humidity');
+    dewPoint = json.getDoubleSafe('dew_point');
+    clouds = json.getDoubleSafe('clouds');
+    windSpeed = json.getDoubleSafe('wind_speed');
+    windDeg = json.getDoubleSafe('wind_deg');
     if (json['weather'] != null) {
       weather = new List<Weather>();
       json['weather'].forEach((v) {

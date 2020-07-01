@@ -557,6 +557,14 @@ final class GoogleMapController
           result.success(null);
           break;
         }
+      case "tileOverlay#refresh":
+        {
+          for (int i = 0; i < tileOverlayList.size(); i++)
+            tileOverlayList.get(i).clearTileCache();
+
+          result.success(null);
+          break;
+        }
       default:
         result.notImplemented();
     }

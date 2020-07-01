@@ -2,6 +2,7 @@ import 'package:OpenSky/model/Current.dart';
 import 'package:OpenSky/model/Daily.dart';
 import 'package:OpenSky/model/Hourly.dart';
 import 'package:OpenSky/model/Minutely.dart';
+import 'package:OpenSky/Ext.dart';
 
 class Forecast {
   double lat;
@@ -24,8 +25,8 @@ class Forecast {
       this.daily});
 
   Forecast.fromJson(Map<String, dynamic> json) {
-    lat = json['lat'].toDouble();
-    lon = json['lon'].toDouble();
+    lat = json.getDoubleSafe('lat');
+    lon = json.getDoubleSafe('lon');
     timezone = json['timezone'];
     timezoneOffset = json['timezone_offset'];
     current =

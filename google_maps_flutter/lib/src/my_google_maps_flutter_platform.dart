@@ -319,4 +319,8 @@ abstract class MyGoogleMapsFlutterPlatform extends PlatformInterface {
   }) {
     throw UnimplementedError('setTileAnimation() has not been implemented.');
   }
+
+  Future<void> refreshTiles({@required int mapId}) {
+    throw UnimplementedError('refreshTiles() has not been implemented.');
+  }
 }

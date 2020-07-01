@@ -486,4 +486,9 @@ class MyMethodChannelGoogleMapsFlutter extends MyGoogleMapsFlutterPlatform {
       active,
     );
   }
+
+  @override
+  Future<void> refreshTiles({@required int mapId}) {
+    return channel(mapId).invokeMethod<void>('tileOverlay#refresh');
+  }
 }

@@ -1,3 +1,5 @@
+import 'package:OpenSky/Ext.dart';
+
 class Temp {
   double day;
   double min;
@@ -9,12 +11,12 @@ class Temp {
   Temp({this.day, this.min, this.max, this.night, this.eve, this.morn});
 
   Temp.fromJson(Map<String, dynamic> json) {
-    day = json['day'].toDouble();
-    min = json['min'].toDouble();
-    max = json['max'].toDouble();
-    night = json['night'].toDouble();
-    eve = json['eve'].toDouble();
-    morn = json['morn'].toDouble();
+    day = json.getDoubleSafe('day');
+    min = json.getDoubleSafe('min');
+    max = json.getDoubleSafe('max');
+    night = json.getDoubleSafe('night');
+    eve = json.getDoubleSafe('eve');
+    morn = json.getDoubleSafe('morn');
   }
 
   Map<String, dynamic> toJson() {
