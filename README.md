@@ -18,7 +18,7 @@ This app is available on the Play Store, but users will still have to provide an
 
 Due to the limitations on the free keys (60 calls/minute), all users will need to sign up for the API and enter their own user keys (this is all explained in the app).
 
-- [Android Play Store Link]()
+- [Android Play Store Link](https://play.google.com/store/apps/details?id=dev.chrisbjohnson.opensky)
 - [OpenWeatherMaps API Sign Up Link](https://home.openweathermap.org/users/sign_in)
 
 ## Build
