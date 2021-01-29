@@ -1,6 +1,6 @@
 # Open Sky
 
-Open Sky is a Dark Sky inspired weather app created for Android (because Apple has bought the app). The UI was designed with inspiration from Dark Sky with some small changes (mostly due to the data available). In theory, the app is cross-platform, but no work has been made on the iOS part.
+Open Sky is a Dark Sky inspired weather app created for Android (because Apple has bought the app). The UI was designed with inspiration from Dark Sky with some small changes (mostly due to the data available). In theory, the app is cross-platform, but no testing has been made on the iOS part.
 
 It's written in Flutter, using the [OpenWeatherMaps API](https://openweathermap.org/api) and Google Maps API.
 
@@ -12,13 +12,10 @@ It's available here as a fully open-source app. No API keys will be provided.
 <img src="https://github.com/chris84948/open-sky/blob/master/screenshots/Screenshot4.png?raw=true" alt="alt text" width="250">
 </span>
 
-## Android App On Play Store
-
-This app is available on the Play Store, but users will still have to provide an API key for OpenWeatherMaps. 
+Users will still have to provide an API key for OpenWeatherMaps. 
 
 Due to the limitations on the free keys (60 calls/minute), all users will need to sign up for the API and enter their own user keys (this is all explained in the app).
 
-- [Android Play Store Link](https://play.google.com/store/apps/details?id=dev.chrisbjohnson.opensky)
 - [OpenWeatherMaps API Sign Up Link](https://home.openweathermap.org/users/sign_in)
 
 ## Build
